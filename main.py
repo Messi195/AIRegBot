@@ -1,17 +1,22 @@
 import telebot
 from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
-#? 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
-TOKEN = '8198528326:AAH8UTw-y8hy8YfPytU2YUZ4xNxkdGn6I-0'
-bot = telebot.TeleBot(TOKEN)
+load_dotenv()
+
+TG_TOKEN = os.getenv('TG_TOKEN')
+OR_TOKEN = os.getenv('OR_TOKEN')
+
+bot = telebot.TeleBot(TG_TOKEN)
 
 client = OpenAI(
     base_url='https://openrouter.ai/api/v1',
-    api_key='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',
+    api_key=OR_TOKEN,
 )
 
 user_data = {}
-# user_data = {'213312': {'name': 'Alex', 'age': 12}, }
+
 
 @bot.message_handler(commands=['start', 'register'])
 def sr(message):
